@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import closeImg from '../../assets/close.svg';
 import { Container } from './styles';
 
 interface NewEmployeeModalProps {
@@ -15,6 +16,13 @@ export function NewEmployeeModal({isOpen, onRequestClose}: NewEmployeeModalProps
     overlayClassName="react-modal-overlay"
     className="react-modal-content"
     >
+      <button 
+        className="react-modal-close" 
+        type="button" 
+        onClick={onRequestClose}
+      >
+        <img src={closeImg} alt="FecharModal" />
+      </button>
       <Container>
         <h2>Cadastrar Funcionario</h2>
 

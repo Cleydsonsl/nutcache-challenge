@@ -3,11 +3,12 @@ import Modal from 'react-modal';
 import { Dashboard } from "./components/dashboard";
 import { Header } from "./components/Header";
 import { NewEmployeeModal } from './components/NewEmployeeModal';
+import { EmployeeProvider } from './EmployeeContext';
 import { GlobalStyle } from "./styles/global";
 
 Modal.setAppElement('#root');
 
-function App() {
+export function App() {
   const [ isNewEmployeeModalOpen, setIsNewEmployeeModalOpen ] = useState(false);
 
   function handleOpenNewEmployeeModal() {
@@ -19,17 +20,15 @@ function App() {
   }
   
   return (
-    <div className="App">
-      <>
-        <Header onOpenNewEmployeeModal={handleOpenNewEmployeeModal} />
-        <Dashboard />
-        <NewEmployeeModal
-          isOpen={isNewEmployeeModalOpen}
-          onRequestClose={handleCloseNewEmployeeModal}
-        />
-        <GlobalStyle />
-      </>
-    </div>
+    <EmployeeProvider>
+      <Header onOpenNewEmployeeModal={handleOpenNewEmployeeModal} />
+      <Dashboard />
+      <NewEmployeeModal
+        isOpen={isNewEmployeeModalOpen}
+        onRequestClose={handleCloseNewEmployeeModal}
+      />
+      <GlobalStyle />
+    </EmployeeProvider>
   );
 }
 

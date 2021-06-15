@@ -1,25 +1,9 @@
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { useContext } from "react";
+import { EmployeeContext } from "../../EmployeeContext";
 import { Container } from "./styles";
 
-interface Register {
-  id: number;
-  name: string;
-  birthDate: string;
-  sex: string;
-  email: string;
-  cpf: string;
-  startDate: string;
-  team: string;
-}
-
 export function EmployeesTable() {
-  const [ register, setRegister ] = useState<Register[]>([]);
-
-  useEffect(() => {
-    api.get('register')
-    .then(response => setRegister(response.data.registers))
-  }, []);
+  const register = useContext(EmployeeContext);
 
   return (
     <Container>

@@ -9,7 +9,7 @@ interface Register {
   email: string;
   cpf: string;
   startDate: string;
-  team: string;
+  team?: string;
 }
 
 type RegisterInput = Omit<Register, 'id'>;

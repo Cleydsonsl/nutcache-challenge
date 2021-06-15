@@ -12,22 +12,38 @@ interface Register {
   team: string;
 }
 
+type RegisterInput = Omit<Register, 'id'>;
+
 interface EmployeeProviderProps {
   children: ReactNode;
 }
 
-export const EmployeeContext = createContext<Register[]>([]);
+interface RegisterContextData {
+  registers: Register[];
+  createRegister: (registers: RegisterInput) => Promise<void>;
+}
+
+export const EmployeeContext = createContext<RegisterContextData>(
+  {} as RegisterContextData
+);
 
 export function EmployeeProvider({children}: EmployeeProviderProps) {
-  const [ register, setRegister ] = useState<Register[]>([]);
+  const [ registers, setRegister ] = useState<Register[]>([]);
 
   useEffect(() => {
     api.get('register')
     .then(response => setRegister(response.data.registers))
   }, []);
 
+  async function createRegister(registerInput: RegisterInput) {
+    const response = await api.post('/register', registerInput)
+    const { register } = response.data;
+
+    setRegister([...registers, register])
+  }
+
   return(
-    <EmployeeContext.Provider value={register}>
+    <EmployeeContext.Provider value={{ registers, createRegister }}>
       {children}
     </EmployeeContext.Provider>
   )

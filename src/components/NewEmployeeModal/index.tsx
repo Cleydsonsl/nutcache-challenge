@@ -1,7 +1,7 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useContext } from 'react';
 import Modal from 'react-modal';
 import closeImg from '../../assets/close.svg';
-import { api } from '../../services/api';
+import { EmployeeContext } from '../../EmployeeContext';
 import { Container } from './styles';
 
 interface NewEmployeeModalProps {
@@ -10,6 +10,8 @@ interface NewEmployeeModalProps {
 }
 
 export function NewEmployeeModal({isOpen, onRequestClose}: NewEmployeeModalProps ) {
+  const { createRegister } = useContext(EmployeeContext);
+
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [sex, setSex] = useState('');
@@ -18,20 +20,27 @@ export function NewEmployeeModal({isOpen, onRequestClose}: NewEmployeeModalProps
   const [startDate, setStartDate] = useState('');
   const [team, setTeam] = useState('');
 
-  function handleCreateNewEmployee(event: FormEvent) {
+  async function handleCreateNewEmployee(event: FormEvent) {
     event.preventDefault();
 
-    const data = {
-      name,
+    await createRegister({
+      name, 
       birthDate, 
-      sex,
-      email,
+      sex, 
       cpf,
+      email,
       startDate,
       team
-    };
-
-    api.post('/register', data)
+    })
+    setName('');
+    setBirthDate('');
+    setSex('');
+    setEmail('');
+    setCpf('');
+    setStartDate('');
+    setTeam('');
+    
+    onRequestClose();
   }
 
   return (

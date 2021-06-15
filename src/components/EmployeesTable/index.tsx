@@ -3,7 +3,7 @@ import { EmployeeContext } from "../../EmployeeContext";
 import { Container } from "./styles";
 
 export function EmployeesTable() {
-  const register = useContext(EmployeeContext);
+  const { registers } = useContext(EmployeeContext);
 
   return (
     <Container>
@@ -16,13 +16,13 @@ export function EmployeesTable() {
         </thead>
 
         <tbody>
-          {register.map(register => {
+          {registers.map(registers => {
             return (
-              <tr key={register.id}>
-                <td>{register.name}</td>
-                <td>{register.email}</td>
-                <td>{register.startDate}</td>
-                <td>{register.team}</td>
+              <tr key={registers.id}>
+                <td>{registers.name}</td>
+                <td>{registers.email}</td>
+                <td>{registers.startDate}</td>
+                <td>{registers.team}</td>
               </tr>
             )
           })}          

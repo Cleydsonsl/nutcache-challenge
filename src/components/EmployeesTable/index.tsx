@@ -1,11 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Container } from "./styles";
 
+interface Register {
+  id: number;
+  name: string;
+  birthDate: string;
+  sex: string;
+  email: string;
+  cpf: string;
+  startDate: string;
+  team: string;
+}
+
 export function EmployeesTable() {
+  const [ register, setRegister ] = useState<Register[]>([]);
+
   useEffect(() => {
-    api.get('transactions')
-    .then(data => console.log(data))
+    api.get('register')
+    .then(response => setRegister(response.data.registers))
   }, []);
 
   return (
@@ -19,24 +32,16 @@ export function EmployeesTable() {
         </thead>
 
         <tbody>
-          <tr>
-            <td>João</td>
-            <td>@email</td>
-            <td>14/05/2021</td>
-            <td>Front-End</td>
-          </tr>
-          <tr>
-            <td>Miguel</td>
-            <td>email@email</td>
-            <td>14/05/2021</td>
-            <td>Back-End</td>
-          </tr>
-          <tr>
-            <td>Juarez</td>
-            <td>emailmail@email</td>
-            <td>14/05/2021</td>
-            <td>FullStack</td>
-          </tr>
+          {register.map(register => {
+            return (
+              <tr key={register.id}>
+                <td>{register.name}</td>
+                <td>{register.email}</td>
+                <td>{register.startDate}</td>
+                <td>{register.team}</td>
+              </tr>
+            )
+          })}          
         </tbody>
       </table>
     </Container>

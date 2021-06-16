@@ -1,10 +1,9 @@
-import { FormEvent, useContext } from "react";
+import { useContext } from "react";
 import { EmployeeContext } from "../../EmployeeContext";
 import { Container } from "./styles";
 
 export function EmployeesTable() {
-  const { registers } = useContext(EmployeeContext);
-  const { deleteRegister } = useContext(EmployeeContext);
+  const { registers, deleteRegister, updateRegister } = useContext(EmployeeContext);
 
   return (
     <Container>
@@ -28,6 +27,7 @@ export function EmployeesTable() {
                   <button 
                     className="btnEdit" 
                     type="button"
+                    onClick={() => updateRegister(registers)}
                   >
                     Editar
                   </button>

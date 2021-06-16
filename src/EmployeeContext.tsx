@@ -52,10 +52,9 @@ export function EmployeeProvider({children}: EmployeeProviderProps) {
   }
 
   async function deleteRegister(registerDelete: Register) {
-    const response = await api.delete(`/register/${registerDelete.id}`)
-    const { register } = response.data;
+    await api.delete(`/register/${registerDelete.id}`)
 
-    setRegister(registers.filter(r => r.id !== register.id))
+    setRegister(registers.filter(r => r.id !== registerDelete.id))
   }
 
   return(

@@ -5,7 +5,7 @@ import App from './App';
 
 createServer({
   models: {
-    register: Model,
+    register: Model
   },
 
   routes() {
@@ -21,17 +21,13 @@ createServer({
       return schema.create('register', data)
     })
 
-    this.patch('/register/:id', (schema, request) => {
-      const register = JSON.parse(request.requestBody);
-
-      return schema.db.register.update(register.id, register);
+    this.put('/register/:id', async function (schema, request) {
+      const id = request.params.id;
+      
+      return schema.find('register', id)?.update({})
     });
 
-    this.delete('/register/:id', (schema, request) => {
-      const id = request.params.id;
-
-      return schema.db.request.find(id)?.destroy()
-    })
+    this.del('/register/:id')
   }
 });
 

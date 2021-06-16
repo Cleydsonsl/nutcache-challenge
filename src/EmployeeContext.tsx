@@ -21,7 +21,7 @@ interface EmployeeProviderProps {
 interface RegisterContextData {
   registers: Register[];
   createRegister: (registers: RegisterInput) => Promise<void>;
-  updateRegister: (registers: Register) => Promise<void>;
+  updateRegisters: (registers: Register) => Promise<void>;
   deleteRegister: (registers: Register) => Promise<void>;
 }
 
@@ -44,7 +44,7 @@ export function EmployeeProvider({children}: EmployeeProviderProps) {
     setRegister([...registers, register])
   }
 
-  async function updateRegister(registerUpdate: Register) {
+  async function updateRegisters(registerUpdate: Register) {
     const response = await api.put(`/update/${registerUpdate.id}`)
     const updateRegister = registers.map(r => r.id ===
         registerUpdate.id ? response.data.register : response
@@ -59,7 +59,7 @@ export function EmployeeProvider({children}: EmployeeProviderProps) {
   }
 
   return(
-    <EmployeeContext.Provider value={{ registers, createRegister, updateRegister, deleteRegister }}>
+    <EmployeeContext.Provider value={{ registers, createRegister, updateRegisters, deleteRegister }}>
       {children}
     </EmployeeContext.Provider>
   )

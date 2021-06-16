@@ -10,9 +10,7 @@ const [updateRegister, setUpdateRegister] = useState({
 export function Dashboard() {
   return(
     <Container>
-      
       <EmployeesTable />
-      
     </Container>
   )
 }

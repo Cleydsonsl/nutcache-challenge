@@ -45,10 +45,12 @@ export function EmployeeProvider({children}: EmployeeProviderProps) {
   }
 
   async function updateRegister(registerUpdate: Register) {
-    const response = await api.patch(`/update/${registerUpdate.id}`)
-    const { register } = response.data;
+    const response = await api.put(`/update/${registerUpdate.id}`)
+    const updateRegister = registers.map(r => r.id ===
+        registerUpdate.id ? response.data.register : response
+    )
 
-    setRegister([...registers, register])
+    setRegister(updateRegister)
   }
 
   async function deleteRegister(registerDelete: Register) {

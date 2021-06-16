@@ -49,7 +49,6 @@ export function EmployeeProvider({children}: EmployeeProviderProps) {
     const updateRegister = registers.map(r => r.id ===
         registerUpdate.id ? response.data.register : response
     )
-
     setRegister(updateRegister)
   }
 

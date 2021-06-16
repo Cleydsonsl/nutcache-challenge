@@ -20,8 +20,20 @@ createServer({
 
       return schema.create('register', data)
     })
+
+    this.patch('/register/:id', (schema, request) => {
+      const register = JSON.parse(request.requestBody);
+
+      return schema.db.register.update(register.id, register);
+    });
+
+    this.delete('/register/:id', (schema, request) => {
+      const id = request.params.id;
+
+      return schema.db.request.find(id)?.destroy()
+    })
   }
-})
+});
 
 ReactDOM.render(
   <React.StrictMode>

@@ -87,4 +87,24 @@ export const GlobalStyle = createGlobalStyle`
       filter: brightness(0.8);
     }
   }
+
+  .btn {
+    display: grid;
+
+    .btnTrash{
+      color: var(--shape);
+      padding: 0.25rem;
+      background: var(--red);
+      border: 0;
+      border-radius: 0.25rem;
+    }
+
+    .btnEdit{
+      color: var(--shape);
+      padding: 0.25rem;
+      background: var(--text-body);
+      border: 0;
+      border-radius: 0.25rem;
+    }
+  }
 `;

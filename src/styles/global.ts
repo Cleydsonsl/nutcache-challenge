@@ -93,7 +93,7 @@ export const GlobalStyle = createGlobalStyle`
 
     .btnTrash{
       color: var(--shape);
-      padding: 0.25rem;
+      padding: 0.20rem;
       background: var(--red);
       border: 0;
       border-radius: 0.25rem;
@@ -101,7 +101,7 @@ export const GlobalStyle = createGlobalStyle`
 
     .btnEdit{
       color: var(--shape);
-      padding: 0.25rem;
+      padding: 0.20rem;
       background: var(--text-body);
       border: 0;
       border-radius: 0.25rem;

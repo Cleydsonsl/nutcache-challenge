@@ -44,7 +44,6 @@ export function NewEmployeeModal({isOpen, onRequestClose}: NewEmployeeModalProps
   }
 
   return (
-    
     <Modal 
     isOpen={isOpen}
     onRequestClose={onRequestClose}
@@ -102,7 +101,7 @@ export function NewEmployeeModal({isOpen, onRequestClose}: NewEmployeeModalProps
           value={team}
           onChange={event => setTeam(event.target.value)}  
         >
-          <option value=""></option>
+          <option value="" disabled selected>Selecione o seu Sexo</option>
           <option value="Mobile">Mobile</option>
           <option value="Front-End">Front-End</option>
           <option value="Back-End">Front-End</option>
